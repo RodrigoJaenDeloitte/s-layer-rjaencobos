@@ -42,6 +42,7 @@
                     <cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
+						<target>Cloudhub-US-East-2</target>
 						<applicationName>s-layer-rjaencobos</applicationName>
 						<environment>Sandbox</environment>
 						<connectedAppClientId>64bb47a8a101421ea46e35dc9099d5bc</connectedAppClientId>

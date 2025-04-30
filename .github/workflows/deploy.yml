@@ -8,34 +8,31 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v3
-
-      - name: Set up Java
-        uses: actions/setup-java@v3
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'maven'
 
-      - name: Set up Maven settings.xml
-        run: |
-          mkdir -p ~/.m2
-          cat <<EOF > ~/.m2/settings.xml
-          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                                        https://maven.apache.org/xsd/settings-1.0.0.xsd">
-            <servers>
-              <server>
-                <id>anypoint-exchange-v3</id>
-                <username>${{ secrets.CONNECTED_APP_CLIENT_ID }}</username>
-                <password>${{ secrets.CONNECTED_APP_CLIENT_SECRET }}</password>
-              </server>
-            </servers>
-          </settings>
-          EOF
+      - name: Create Maven Settings
+        uses: s4u/maven-settings-action@v2
+        with:
+          servers: |
+            [{
+              "id": "anypoint-exchange-v3",
+              "username": "${{ secrets.CONNECTED_APP_CLIENT_ID }}",
+              "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+            }]
 
       - name: Deploy to CloudHub
-        run: mvn clean deploy -DskipTests -DmuleDeploy -Danypoint.connectedapp.clientid=${{ secrets.CONNECTED_APP_CLIENT_ID }} -Danypoint.connectedapp.clientsecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+        env:
+          ANYPOINT_CLIENTID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+          ANYPOINT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+        run: |
+          mvn clean deploy -DskipTests \
+          -DmuleDeploy \
+          -Danypoint.connectedapp.clientid=${ANYPOINT_CLIENTID} \
+          -Danypoint.connectedapp.clientsecret=${ANYPOINT_SECRET}

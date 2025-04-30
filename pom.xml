@@ -47,7 +47,6 @@
 						<connectedAppClientId>64bb47a8a101421ea46e35dc9099d5bc</connectedAppClientId>
 						<connectedAppClientSecret>195Eb9d7921F4605B7D9C34AA8B8f020</connectedAppClientSecret>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<objectStoreV2>true</objectStoreV2>
             		</cloudhub2Deployment>
                 </configuration>
             </plugin>

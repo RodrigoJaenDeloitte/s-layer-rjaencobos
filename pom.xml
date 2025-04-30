@@ -41,6 +41,7 @@
                 <configuration>
                     <cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
+						<provider>MC</provider>
 						<muleVersion>${app.runtime}</muleVersion>
 						<target>Cloudhub-US-East-2</target>
 						<applicationName>s-layer-rjaencobos</applicationName>
@@ -48,6 +49,8 @@
 						<connectedAppClientId>64bb47a8a101421ea46e35dc9099d5bc</connectedAppClientId>
 						<connectedAppClientSecret>195Eb9d7921F4605B7D9C34AA8B8f020</connectedAppClientSecret>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<replicas>1</replicas>
+						<vCores>0.1</vCores>
             		</cloudhub2Deployment>
                 </configuration>
             </plugin>

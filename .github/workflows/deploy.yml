@@ -37,5 +37,5 @@ jobs:
           </settings>
           EOF
 
-          - name: Deploy to CloudHub
-          run: mvn clean deploy -DskipTests -DmuleDeploy -Danypoint.connectedapp.clientid=${{ secrets.CONNECTED_APP_CLIENT_ID }} -Danypoint.connectedapp.clientsecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+      - name: Deploy to CloudHub
+        run: mvn clean deploy -DskipTests -DmuleDeploy -Danypoint.connectedapp.clientid=${{ secrets.CONNECTED_APP_CLIENT_ID }} -Danypoint.connectedapp.clientsecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }}

@@ -44,8 +44,6 @@
 						<muleVersion>${app.runtime}</muleVersion>
 						<applicationName>s-layer-rjaencobos</applicationName>
 						<environment>Sandbox</environment>
-						<workers>1</workers>
-						<workerType>MICRO</workerType>
 						<connectedAppClientId>64bb47a8a101421ea46e35dc9099d5bc</connectedAppClientId>
 						<connectedAppClientSecret>195Eb9d7921F4605B7D9C34AA8B8f020</connectedAppClientSecret>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>

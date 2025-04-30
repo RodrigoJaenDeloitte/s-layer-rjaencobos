@@ -30,12 +30,12 @@ jobs:
             <servers>
               <server>
                 <id>anypoint-exchange-v3</id>
-                <username>${{ secrets.ANYPOINT_USERNAME }}</username>
-                <password>${{ secrets.ANYPOINT_PASSWORD }}</password>
+                <username>${{ secrets.CONNECTED_APP_CLIENT_ID }}</username>
+                <password>${{ secrets.CONNECTED_APP_CLIENT_SECRET }}</password>
               </server>
             </servers>
           </settings>
           EOF
 
-      - name: Deploy to CloudHub
-        run: mvn clean deploy -X -DmuleDeploy -Danypoint.username=${{ secrets.ANYPOINT_USERNAME }} -Danypoint.password=${{ secrets.ANYPOINT_PASSWORD }} -Danypoint.environment=Sandbox 
+          - name: Deploy to CloudHub
+          run: mvn clean deploy -DskipTests -DmuleDeploy -Danypoint.connectedapp.clientid=${{ secrets.CONNECTED_APP_CLIENT_ID }} -Danypoint.connectedapp.clientsecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }}

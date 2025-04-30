@@ -39,7 +39,7 @@
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <cloudHubDeployment>
+                    <cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
 						<applicationName>s-layer-rjaencobos</applicationName>
@@ -51,7 +51,7 @@
 						<connectedAppClientSecret>195Eb9d7921F4605B7D9C34AA8B8f020</connectedAppClientSecret>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
 						<objectStoreV2>true</objectStoreV2>
-            		</cloudHubDeployment>
+            		</cloudhub2Deployment>
                 </configuration>
             </plugin>
 		</plugins>

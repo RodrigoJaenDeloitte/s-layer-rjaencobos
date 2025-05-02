@@ -9,5 +9,10 @@ http://maven.apache.org/xsd/settings-1.0.0.xsd">
       <username>~~~Client~~~</username>
       <password>${clientID}~?~${clientSecret}</password>
     </server>
+    <server>
+      <id>mulesoft-enterprise</id>
+      <username>~~~Client~~~</username>
+      <password>${clientID}~?~${clientSecret}</password>
+    </server>
   </servers>
 </settings>

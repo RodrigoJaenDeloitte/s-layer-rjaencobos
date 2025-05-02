@@ -32,7 +32,7 @@ jobs:
           ANYPOINT_CLIENTID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
           ANYPOINT_CLIENTSECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
         run: |
-          mvn clean deploy -DskipTests \
+          mvn clean package deploy -DskipTests \
             -DmuleDeploy \
             -Danypoint.connectedapp.clientid=${ANYPOINT_CLIENTID} \
             -Danypoint.connectedapp.clientsecret=${ANYPOINT_CLIENTSECRET} \

@@ -17,23 +17,8 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Create Maven Settings
-        uses: s4u/maven-settings-action@v2
-        with:
-          servers: |
-            [{
-              "id": "anypoint-exchange-v3",
-              "username": "${{ secrets.CONNECTED_APP_CLIENT_ID }}",
-              "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
-            }]
+      - name: Deploy to Exchange
+        run: mvn clean deploy -DclientID=64bb47a8a101421ea46e35dc9099d5bc -DclientSecret=195Eb9d7921F4605B7D9C34AA8B8f020 -s settings.xml
 
-      - name: Deploy to CloudHub 2.0
-        env:
-          ANYPOINT_CLIENTID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
-          ANYPOINT_CLIENTSECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
-        run: |
-          mvn clean package deploy -DskipTests \
-            -DmuleDeploy \
-            -Danypoint.connectedapp.clientid=${ANYPOINT_CLIENTID} \
-            -Danypoint.connectedapp.clientsecret=${ANYPOINT_CLIENTSECRET} \
-            -Danypoint.connectedapp.granttype=client_credentials
+      - name: Deploy to CloudHub
+        run: mvn clean deploy -DmuleDeploy -DtargetName=Cloudhub-US-East-2 -Denvironment=Sandbox -Dreplicas=1 -DvCores=0.1 -DappName=s-layer-rjaencobos -DclientID=64bb47a8a101421ea46e35dc9099d5bc -DclientSecret=195Eb9d7921F4605B7D9C34AA8B8f020 -s settings.xml

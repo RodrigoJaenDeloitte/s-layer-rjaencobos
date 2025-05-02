@@ -7,12 +7,12 @@ http://maven.apache.org/xsd/settings-1.0.0.xsd">
     <server>
       <id>anypoint-exchange-v3</id>
       <username>~~~Client~~~</username>
-      <password>${clientID}~?~${clientSecret}</password>
+      <password>64bb47a8a101421ea46e35dc9099d5bc~?~195Eb9d7921F4605B7D9C34AA8B8f020</password>
     </server>
     <server>
       <id>mulesoft-enterprise</id>
       <username>~~~Client~~~</username>
-      <password>${clientID}~?~${clientSecret}</password>
+      <password>64bb47a8a101421ea46e35dc9099d5bc~?~195Eb9d7921F4605B7D9C34AA8B8f020</password>
     </server>
   </servers>
 </settings>

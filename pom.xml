@@ -58,10 +58,10 @@
 							</http>
 						</deploymentSettings>
 						<properties>
-							<remote.api.clientId>8081</remote.api.clientId>
+							<remote.api.clientId>${clientID}</remote.api.clientId>
 						</properties>
 						<secureProperties>
-							<remote.api.clientSecret>8081</http.port>
+							<remote.api.clientSecret>${clientSecret}</remote.api.clientSecret>
 						</secureProperties>
 					</cloudhub2Deployment>
 				</configuration>

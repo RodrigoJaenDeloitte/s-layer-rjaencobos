@@ -23,6 +23,22 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 17
+      - name: Configure Maven Settings
+        uses: whelk-io/maven-settings-xml-action@v22
+        with:
+          servers: >
+            [
+              {
+                "id": "anypoint-exchange-v3",
+                "username": "${{ secrets.CONNECTED_APP_CLIENT_ID }}",
+                "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+              },
+              {
+                "id": "mulesoft-enterprise",
+                "username": "${{ secrets.CONNECTED_APP_CLIENT_ID }}",
+                "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+              }
+            ]
       - name: Build with Maven
         run: mvn -B package --file pom.xml -DskipMunitTests
       - name: Stamp artifact file name with commit hash
@@ -54,22 +70,36 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: artifacts
-      - name: maven-settings-xml-action 
+      - name: Configure Maven Settings
         uses: whelk-io/maven-settings-xml-action@v22
+        with:
+          servers: >
+            [
+              {
+                "id": "anypoint-exchange-v3",
+                "username": "${{ secrets.CONNECTED_APP_CLIENT_ID }}",
+                "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+              },
+              {
+                "id": "mulesoft-enterprise",
+                "username": "${{ secrets.CONNECTED_APP_CLIENT_ID }}",
+                "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+              }
+            ]
+      - name: Deploy to Exchange
         env:
           USERNAME: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
           PASSWORD: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
-        with:
-          servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "64bb47a8a101421ea46e35dc9099d5bc~?~195Eb9d7921F4605B7D9C34AA8B8f020" }]'
-      - name: Deploy to Exchange
         run: |
           artifactName=$(ls *.jar | head -1)
           mvn deploy -DskipMunitTests \
-          -s /home/runner/.m2/settings.xml \
           -Dmule.artifact=$artifactName \
           -Danypoint.clientId="$USERNAME" \
           -Danypoint.clientSecret="$PASSWORD"
       - name: Deploy to Sandbox
+        env:
+          USERNAME: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+          PASSWORD: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
         run: |
           artifactName=$(ls *.jar | head -1)
           mvn deploy -DskipMunitTests -DmuleDeploy \

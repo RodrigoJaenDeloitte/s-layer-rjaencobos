@@ -31,16 +31,39 @@ jobs:
               {
                 "id": "anypoint-exchange-v3",
                 "username": "${{ secrets.CONNECTED_APP_CLIENT_ID }}",
-                "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+                "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}",
+                "configuration": {
+                  "httpConfiguration": {
+                    "all": {
+                      "usePreemptive": "true"
+                    }
+                  }
+                }
               },
               {
                 "id": "mulesoft-enterprise",
                 "username": "${{ secrets.CONNECTED_APP_CLIENT_ID }}",
-                "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+                "password": "${{ secrets.CONNECTED_APP_CLIENT_SECRET }}",
+                "configuration": {
+                  "httpConfiguration": {
+                    "all": {
+                      "usePreemptive": "true"
+                    }
+                  }
+                }
               }
             ]
       - name: Build with Maven
-        run: mvn -B package --file pom.xml -DskipMunitTests
+        env:
+          ANYPOINT_CLIENTID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+          ANYPOINT_CLIENTSECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+        run: |
+          mvn -B package --file pom.xml \
+          -DskipMunitTests \
+          -Danypoint.clientId=$ANYPOINT_CLIENTID \
+          -Danypoint.clientSecret=$ANYPOINT_CLIENTSECRET \
+          -Danypoint.platform.client_id=$ANYPOINT_CLIENTID \
+          -Danypoint.platform.client_secret=$ANYPOINT_CLIENTSECRET
       - name: Stamp artifact file name with commit hash
         run: |
           artifactName1=$(ls target/*.jar | head -1)

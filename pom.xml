@@ -35,9 +35,9 @@
 			</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>3.7.1</version>
-				<extensions>true</extensions>
+                <artifactId>mule-maven-plugin</artifactId>
+                <version>${mule.maven.plugin.version}</version>
+                <extensions>true</extensions>
 				<configuration>
                     <classifier>---- select project type ----</classifier>
                     <cloudhub2Deployment>
@@ -102,7 +102,7 @@
         <repository>
             <id>anypoint-exchange-v3</id>
             <name>Anypoint Exchange</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/d36a1128-e322-46b8-b0ff-0e2971ea1aea/maven</url>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
             <layout>default</layout>
         </repository>
         <repository>

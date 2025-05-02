@@ -12,8 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<anypoint.clientId>${anypoint.clientId}</anypoint.clientId>
-        <anypoint.clientSecret>${anypoint.clientSecret}</anypoint.clientSecret>
+
 		<app.runtime>4.9.3:3e-java17</app.runtime>
 		<mule.maven.plugin.version>4.5.0</mule.maven.plugin.version>
 	</properties>
@@ -40,21 +39,21 @@
 				<version>3.7.1</version>
 				<extensions>true</extensions>
 				<configuration>
-					<cloudhub2Deployment>
-						<uri>https://anypoint.mulesoft.com</uri>
-						<provider>MC</provider>
-						<environment>Sandbox</environment>
-						<target>Cloudhub-EU-Central-1</target>
-						<muleVersion>${app.runtime}</muleVersion>
-						<connectedAppClientId>${anypoint.clientId}</connectedAppClientId>
-						<connectedAppClientSecret>${anypoint.clientSecret}</connectedAppClientSecret>
-						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<applicationName>${app.name}</applicationName>
-						<businessGroupId>d36a1128-e322-46b8-b0ff-0e2971ea1aea</businessGroupId>
-						<replicas>1</replicas>
-						<vCores>0.1</vCores>
-					</cloudhub2Deployment>
-				</configuration>
+                    <classifier>---- select project type ----</classifier>
+                    <cloudhub2Deployment>
+                        <uri>https://anypoint.mulesoft.com</uri>
+                        <provider>MC</provider>
+                        <environment>Sandbox</environment>
+                        <target>Cloudhub-US-East-2</target>
+                        <muleVersion>${app.runtime}</muleVersion>
+                        <connectedAppClientId>64bb47a8a101421ea46e35dc9099d5bc</connectedAppClientId>
+                        <connectedAppClientSecret>195Eb9d7921F4605B7D9C34AA8B8f020</connectedAppClientSecret>
+                        <connectedAppGrantType>client_credentials</connectedAppGrantType>
+                        <applicationName>s-layer-rjaencobos</applicationName>
+                        <replicas>1</replicas>
+                        <vCores>0.1</vCores>
+                    </cloudhub2Deployment>
+                </configuration>
 			</plugin>
 		</plugins>
 	</build>
